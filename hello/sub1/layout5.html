@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      div {
+        width: 100px;
+        border: 1px solid green;
+        margin: 5px;
+        padding: 2rem;
+        float: left;
+        /* 원래 이미지 주변 글을 흐르듯이 사용하기위해 만들어진 것들
+        그런데 inline이 없을 경우 이걸로 가로로 주르륵 배치하는 용도로 사용
+        그러나 이슈나 문제가 많다.*/
+        /*
+        float 속성
+        원래는 이미지와 text의 조합을 위해서
+        사용하는 속성이었다.
+
+        어떤 경로로 인하여 
+        block 형 tag를 한 라인에 배치하기 위하여
+        변형적으로 사용을 했었다.
+
+        상당히 많은 이슈가 있어서 최근에는
+        사용하지 않는다.
+        */
+      }
+      div#d1 {
+        background-color: yellow;
+      }
+      div#d2 {
+        background-color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="d1">1</div>
+    <div id="d2">2</div>
+    <div id="d3">3</div>
+    <div id="d4">4</div>
+    <div id="d5">5</div>
+  </body>
+</html>
