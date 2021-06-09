@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic HTML</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: 10px auto;
+      }
+      table td {
+        border: 1px solid blue;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>이름</td>
+        <td>전화번호</td>
+        <td>주소</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>010-111-1111</td>
+        <td>서울특별시</td>
+      </tr>
+    </table>
+  </body>
+  <script>
+    /*
+    위에 보이는 table을 JS 코드를 사용하여 만드시오.
+    */
+    const doc = document;
+
+    let table = doc.createElement("table");
+
+    let tr1 = doc.createElement("tr");
+
+    let td1 = doc.createElement("td");
+    td1.innerHTML = "이름";
+
+    let td2 = doc.createElement("td");
+    td2.innerHTML = "전화번호";
+
+    let td3 = doc.createElement("td");
+    td3.innerHTML = "주소";
+
+    tr1.appendChild(td1);
+    tr1.appendChild(td2);
+    tr1.appendChild(td3);
+
+    table.appendChild(tr1);
+
+    let tr2 = doc.createElement("tr");
+
+    let td4 = doc.createElement("td");
+    td4.innerHTML = "이름";
+
+    let td5 = doc.createElement("td");
+    td5.innerHTML = "전화번호";
+
+    let td6 = doc.createElement("td");
+    td6.innerHTML = "주소";
+
+    tr2.appendChild(td4);
+    tr2.appendChild(td5);
+    tr2.appendChild(td6);
+
+    table.appendChild(tr2);
+
+    doc.querySelector("body").appendChild(table);
+
+    // js 배열을 사용하여
+    const titles = ["이름", "전화번호", "주소"];
+    const data = ["홍길동", "010", "서울시"];
+
+    let table1 = doc.createElement("talbe");
+    let tr = doc.createElement("tr");
+    for (let i = 0; i < titles.length; i++) {
+      let td = doc.createElement("td");
+      td.innerHTML = titles[i];
+      tr.appendChild(td);
+    }
+    table1.appendChild(tr);
+
+    doc.querySelector("body").appendChild(table1);
+  </script>
+</html>
