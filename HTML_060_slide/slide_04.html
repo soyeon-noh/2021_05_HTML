@@ -13,11 +13,25 @@
         position: relative;
       }
 
+      div.images {
+        display: flex;
+        transition: 1s;
+      }
+
       div.images img {
         width: 500px;
         height: 500px;
       }
 
+      /* 
+실제 전체이미지는 여러개의 이미지가 나열되어
+width가 상당히 큰 상태이다.
+이미지 리스트 중에서 mask box만큼만 보여주도록 하기 위하여
+mask Box의 overflow를 hidden으로 설정했다.
+
+실제로 보여지는 이미지 1개의 크기는 
+mask box의 width, height 라고 봐도 된다.
+*/
       div.mask {
         width: 500px;
         height: 500px;
@@ -54,30 +68,68 @@
       }
 
       article.nav div:hover {
-        color: tomato;
+        color: rgb(110, 42, 30);
         cursor: pointer;
       }
     </style>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        const image = document.querySelector("idv.images");
+
+        // 이미지 개개별로 모두 가져오기
+        // images는 img tag들 정보를 담는 배열이 생성
+        const images = document.querySelectorAll("div.images img");
+        const IMAGE_COUNT = images.length;
         const IMAGE_WIDTH = 500;
-        const images = document.querySelector("div.images");
-        let position = IMAGE_WIDTH;
+        let position = 0;
+
         const prev = () => {
+          // 맨 처음 이미지가 화면에 보이고 있을 때
+          // 현재 보이는 이미지가 맨 오른쪽 끝 이미지인지
+          // 위치값을 검사하여
+          // IMAGE_WIDTH  * IMAGE_COUNT 는 전체 이미지의 가로 폭이 된다.
+          // IMAGE_WIDTH * (IMAGE_COUNT -1)을 하면 제일 마지막 이미지의
+          //    왼쪽 라인의 좌표가 된다.
+          // 그 좌표에 -1을 곱하여 현재 prsition의 값과 비교해 본다.
+
+          if (position <= IMAGE_WIDTH * ((IMAGE_COUNT - 1) * -1)) {
+            position += IMAGE_WIDTH;
+          }
+          // 이미지(mask box)의 width 만큼 position 값을 감소시키기
           position += IMAGE_WIDTH * -1;
-          images.style.transform = `translateX(${position})`;
+
+          console.log(position); // 확인코드
+
+          // 방법 1 : margin-left를 - 로 설정하여 이미지 왼쪽으로 이동
+          //      css의 margin-left는 JS에서 camel case를 사용하여 표현
+          //      (중간의 -를 제거하고 - 다음 글자를 대문자로)
+          //      image.style.marginLeft = position + "px";
+          // 방법 2 : margin-left를 이동하기보다
+          //      CSS3의 transform을 사용하자
+
+          // js에서는 문자열 + 문자열 ... 등의 연산 대신에
+          // Backtit(`) 을 사용하여 문자열 완성 연산을 수행하자.
+          // image.style.transform = "translateX(" + position + "px)";
+          image.style.transform = `translateX(${position}px)`;
+        }; //end prev
+
+        const next = () => {
+          console.log(position);
+
+          if (position < 0) {
+            position = IMAGE_WIDTH * (IMAGE_COUNT - 1) * -1;
+          }
+          position += IMAGE_WIDTH;
+          image.style.transform = `translateX(${position}px)`;
         };
 
         document.querySelector("article.nav").addEventListener("click", (e) => {
-          let tag = e.target;
-          if (tag.tagName === "DIV") {
-            // alert(tag.textContent);
-            if (tag.textContent === "<") {
-              //   alert("앞으로");
-              prev();
-            } else if (tag.textContent === ">") {
-              alert("뒤로");
-            }
+          let text = e.target.innerHTML;
+
+          if (text === "<" || text === "&lt;") {
+            prev();
+          } else if (text === ">" || text === "&gt;") {
+            next();
           }
         });
       });
