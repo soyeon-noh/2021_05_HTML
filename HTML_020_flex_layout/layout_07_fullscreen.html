@@ -92,6 +92,8 @@
         font-size: 40px;
 
         display: flex;
+
+        height: 0;
       }
 
       section#main aside {
@@ -110,7 +112,14 @@
 
       section#main article::-webkit-scrollbar {
         /* -webkit 은 크롬*/
-        display: none; /* 스크롤을 사라지게 한다 */
+        /* display: none; 스크롤을 사라지게 한다 */
+
+        width: 10px; /* 스크롤바 너비 정하기 */
+      }
+
+      section#main article:hover::-webkit-scrollbar-thumb {
+        background-color: skyblue;
+        /* 스크롤바 색 정하기 */
       }
 
       section#main article p {
