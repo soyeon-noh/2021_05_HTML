@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1.title {
+        background-color: #e3cfeb;
+        color: #422238;
+        padding: 20px;
+      }
+
+      nav#main_nav {
+        background-color: #c7a4c6;
+      }
+
+      nav#main_nav ul {
+        list-style: none;
+        display: flex;
+        padding: 0 10px;
+      }
+
+      nav#main_nav li {
+        padding: 5px 12px;
+        transition: 0.5s;
+      }
+
+      nav#main_nav li:nth-of-type(4) {
+        margin-left: auto;
+      }
+
+      nav#main_nav li:hover {
+        background-color: #a87da9;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">대한 고교 성적처리 2021 v1</h1>
+    <nav id="main_nav">
+      <ul>
+        <li>HOME</li>
+        <li>학생정보</li>
+        <li>성적알람표</li>
+        <li>로그인</li>
+      </ul>
+    </nav>
+  </body>
+</html>
